@@ -12,14 +12,16 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private TextView questionTextView, textViewResult;
-    private Button trueButton , falseButton;
+    private Button trueButton , falseButton, nextQuestionButton;
+
+
 
 
     private int currentQuestionsIndex = 0;
 
 
-    private  ArrayList<String> questions = new ArrayList<>();
-    private  ArrayList<Boolean> answers = new ArrayList<>();
+    private final ArrayList<String> questions = new ArrayList<>();
+    private final ArrayList<Boolean> answers = new ArrayList<>();
 
 
 
@@ -45,11 +47,14 @@ public class MainActivity extends AppCompatActivity {
         trueButton = findViewById(R.id.trueButton);
         falseButton = findViewById(R.id.falseButton);
         textViewResult = findViewById(R.id.textViewResult);
+        nextQuestionButton = findViewById(R.id.nextQuestionButton);
+        nextQuestionButton.setVisibility(View.INVISIBLE);
         updateQuestion();
         trueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 checkAnswer(true);
+                nextQuestionButton.setVisibility(View.VISIBLE);
             }
         });
 
@@ -57,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 checkAnswer(false);
+                nextQuestionButton.setVisibility(View.INVISIBLE);
+
             }
         });
 
